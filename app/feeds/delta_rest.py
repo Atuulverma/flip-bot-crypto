@@ -1,4 +1,4 @@
-from typing import Any
+# app/feeds/delta_rest.py
 
 import requests
 
@@ -11,15 +11,20 @@ class DeltaREST:
         self.api_secret = api_secret
         self.session = requests.Session()
 
-    def candles(self, symbol: str, resolution: str, start: int, end: int) -> dict[str, Any]:
-        """Fetch OHLCV/other candle series. 'symbol' can be 'SOLUSD' or 'MARK:SOLUSD', etc."""
+    def candles(self, symbol: str, resolution: str, start: int, end: int) -> dict[str, object]:
+        """Fetch OHLCV/other candle series. 'symbol' can be 'SOLUSD' or 'MARK:SOLUSD'."""
         url = f"{BASE}/history/candles"
-        params = {"symbol": symbol, "resolution": resolution, "start": start, "end": end}
+        params: dict[str, str | int] = {
+            "symbol": symbol,
+            "resolution": resolution,
+            "start": int(start),
+            "end": int(end),
+        }
         r = self.session.get(url, params=params, timeout=20)
         r.raise_for_status()
         return r.json()
 
-    def products(self) -> dict[str, Any]:
+    def products(self) -> dict[str, object]:
         url = f"{BASE}/products"
         r = self.session.get(url, timeout=20)
         r.raise_for_status()

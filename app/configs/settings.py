@@ -39,4 +39,4 @@ class Settings(BaseSettings):
             return {"SOLUSD": {"period": 10, "multiplier": 3.0}}
 
 
-settings = Settings()  # type: ignore
+settings = Settings()

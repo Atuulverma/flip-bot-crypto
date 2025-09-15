@@ -6,6 +6,8 @@ from ...features.states import classify_trend_chop
 from .decision_record import DecisionRecord
 from .selector import Selector
 
+MIN_COLORS_REQUIRED = 2
+
 
 class Engine:
     """Flip-only engine: long on GREEN, short on RED, exit/reverse on opposite flip."""
@@ -15,8 +17,8 @@ class Engine:
         self.position: Optional[str] = None  # 'LONG' | 'SHORT' | None
 
     def _current_flip(self, colors: pd.Series) -> Optional[str]:
-        LEN_COLORS_MIN = 2
-        if len(colors) < LEN_COLORS_MIN:
+
+        if len(colors) < MIN_COLORS_REQUIRED:
             return None
         prev, curr = colors.iloc[-2], colors.iloc[-1]
         if prev != curr and curr in ("GREEN", "RED"):
