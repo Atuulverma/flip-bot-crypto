@@ -1,1 +1,1 @@
-# Prometheus metrics stub
+# Prometheus metrics placeholders

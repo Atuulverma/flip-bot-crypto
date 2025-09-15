@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.venv/
+venv/
+.env
+.env.*
+dist/
+build/
+*.egg-info/
+
+# Data & temp
+data/
+.wm/
+*.parquet
+*.csv
+.DS_Store
