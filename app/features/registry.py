@@ -1,0 +1,3 @@
+_REGISTRY = {}
+
+def register(...): ...
